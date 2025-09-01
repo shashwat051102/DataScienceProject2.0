@@ -1,6 +1,7 @@
 from src.DataScienceProject import logger
 from src.DataScienceProject.pipeline.Data_ingestion_pipeline import DataIngestionTrainingPipeline
 from src.DataScienceProject.pipeline.Data_validation_pipeline import DataValidationTrainingPipeline
+from src.DataScienceProject.pipeline.Data_transformation_pipeline import DataTransformationTrainingPipeline
 
 
 STAGE_NAME = "Data Ingestion Stage"
@@ -22,6 +23,19 @@ if __name__ == "__main__":
         obj = DataValidationTrainingPipeline()
         obj.initiate_data_validation()
         logger.info(f">>>>> stage {STAGE_NAME} completed <<<<<<<<<<\n\nx==========x")
+        
+    except Exception as e:
+        logger.exception(e)
+        raise e
+    
+    
+    STAGE_NAME = "Data Transformation Stage"
+    
+    try:
+        logger.info(f">>>>> stage {STAGE_NAME} started <<<<<")
+        obj = DataTransformationTrainingPipeline()
+        obj.initiate_data_transformation()
+        logger.info(f">>>>> stage {STAGE_NAME} completed <<<<<\n\nx==========x")
         
     except Exception as e:
         logger.exception(e)
